@@ -13,4 +13,9 @@ class Teacher extends Model
     {
         return $this->morphOne(User::class, 'usable');
     }
+
+    public function pupils()
+    {
+        return $this->belongsToMany(Pupil::class);
+    }
 }

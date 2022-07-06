@@ -13,4 +13,11 @@ class Elter extends Model
     {
         return $this->morphOne(User::class, 'usable');
     }
+
+    public function  children()
+    {
+        return $this->belongsToMany(Pupil::class);
+    }
+
+
 }

@@ -2,12 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Task;
+use App\Models\ClassRoom;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
-class TaskPolicy
+class ClassRoomPolicy
 {
     use HandlesAuthorization;
 
@@ -19,22 +18,19 @@ class TaskPolicy
      */
     public function viewAny(User $user)
     {
-        return Auth::check();
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Task $task)
+    public function view(User $user, ClassRoom $classRoom)
     {
-        return in_array($task->id, $user->authoredTasks()->pluck('id')->toArray()) ||
-             in_array($task->id, $user->tasks()->pluck('id')->toArray()) ||
-            in_array($task->id, $user->usable->pupil->tasks()->pluck('id')->toArray())
-            ;
+        //
     }
 
     /**
@@ -45,41 +41,41 @@ class TaskPolicy
      */
     public function create(User $user)
     {
-        return $user->usable_type == "teacher";
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Task $task)
+    public function update(User $user, ClassRoom $classRoom)
     {
-        return $user->usable_type == "teacher" && in_array($task->id, $user->authoredTasks()->pluck('id')->toArray());
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Task $task)
+    public function delete(User $user, ClassRoom $classRoom)
     {
-        return $user->usable_type == "teacher" && in_array($task->id, $user->authoredTasks()->pluck('id')->toArray());
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Task $task)
+    public function restore(User $user, ClassRoom $classRoom)
     {
         //
     }
@@ -88,11 +84,11 @@ class TaskPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Task $task)
+    public function forceDelete(User $user, ClassRoom $classRoom)
     {
-        return false;
+        //
     }
 }

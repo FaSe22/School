@@ -13,4 +13,19 @@ class Pupil extends Model
     {
         return $this->morphOne(User::class, 'usable');
     }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
+
+    public function eltern()
+    {
+        return $this->belongsToMany(Elter::class);
+    }
+
+    public function classRoom()
+    {
+        return $this->belongsTo(ClassRoom::class);
+    }
 }

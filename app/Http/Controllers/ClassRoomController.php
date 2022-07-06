@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use App\Models\Task;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreClassRoomRequest;
+use App\Http\Requests\UpdateClassRoomRequest;
+use App\Models\ClassRoom;
 
-class TaskController extends Controller
+class ClassRoomController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->authorizeResource(Task::class, 'task');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return response(Task::all(), 200  );
+        //
     }
 
     /**
@@ -39,21 +31,21 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
+     * @param  \App\Http\Requests\StoreClassRoomRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreClassRoomRequest $request)
     {
-        return response(Auth::user()->authoredTasks()->create($request->validated()), 200);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(ClassRoom $classRoom)
     {
         //
     }
@@ -61,10 +53,10 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(ClassRoom $classRoom)
     {
         //
     }
@@ -72,11 +64,11 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTaskRequest  $request
-     * @param  \App\Models\Task  $task
+     * @param  \App\Http\Requests\UpdateClassRoomRequest  $request
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateClassRoomRequest $request, ClassRoom $classRoom)
     {
         //
     }
@@ -84,10 +76,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Task  $task
+     * @param  \App\Models\ClassRoom  $classRoom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(ClassRoom $classRoom)
     {
         //
     }
