@@ -15,11 +15,11 @@ class Task extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
-    public function users(): BelongsToMany
+    public function pupils(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,);
+        return $this->belongsToMany(Pupil::class,);
     }
 }

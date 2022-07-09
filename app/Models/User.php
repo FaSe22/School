@@ -53,14 +53,6 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
-    public function tasks(): BelongsToMany
-    {
-        return $this->belongsToMany(Task::class);
-    }
 
-    public function authoredTasks(): HasMany
-    {
-        return $this->hasMany(Task::class, 'author_id');
-    }
 
 }
