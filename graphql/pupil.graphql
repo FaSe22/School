@@ -1,0 +1,37 @@
+type Pupil{
+    id: ID!
+    first_name: String!
+    last_name: String!
+    class_room: Classroom! @belongsTo(relation: "classRoom")
+    teachers: [Teacher!]! @hasManyThrough
+    user: User! @morphOne
+    tasks(solved: Boolean @where): [Task!] @belongsToMany
+}
+
+extend type Mutation {
+    createPupil(input: CreatePupilInput @spread): Pupil @create
+}
+
+extend type Query {
+    pupils(classroom: Int @where(key: "class_room_id")): [Pupil!]! @paginate(defaultCount: 15)
+    pupil(id: ID!@eq): Pupil @find
+}
+
+input CreatePupilsHasMany {
+    create: [CreatePupilInput!]
+    connect: [ID]
+}
+
+input CreatePupilInput {
+    first_name: String!
+    last_name: String!
+    user: CreateUserMorphOne!
+    class_room: CreateClassromBelongsTo @rename(attribute: "classRoom")
+}
+
+
+input CreateUserMorphOne {
+    create: CreateUserInput
+    connect: ID
+}
+

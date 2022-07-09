@@ -1,0 +1,6 @@
+type Subject{
+    name: String!
+    class_rooms: [Classroom!]! @belongsToMany
+    teachers: [Teacher!]! @belongsToMany
+    tasks: [Task!]! @belongsToMany
+}

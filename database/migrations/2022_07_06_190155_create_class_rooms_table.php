@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
+            $table->integer('grade');
+            $table->enum('section', ['A', 'B', 'C', 'D', 'E', 'F']);
             $table->timestamps();
+            $table->unique(['grade', 'section']);
         });
     }
 

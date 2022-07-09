@@ -22,4 +22,6 @@ class Task extends Model
     {
         return $this->belongsToMany(Pupil::class,);
     }
+
+
 }

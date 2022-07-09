@@ -1,3 +1,11 @@
+#import classroom.graphql
+#import pupil.graphql
+#import teacher.graphql
+#import task.graphql
+#import elter.graphql
+#import subject.graphql
+#import user.graphql
+
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
@@ -38,4 +46,9 @@ type User {
 
     "When the account was last updated."
     updated_at: DateTime!
+
+    useable: Usable! @morphTo
+
 }
+
+union Usable = Teacher | Pupil

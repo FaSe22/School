@@ -21,4 +21,9 @@ class ClassRoom extends Model
         return $this->hasMany(Pupil::class);
     }
 
+    public function subjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Subject::class);
+    }
+
 }

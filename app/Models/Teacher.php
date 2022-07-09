@@ -18,12 +18,6 @@ class Teacher extends Model
         return $this->morphOne(User::class, 'usable');
     }
 
-    public function pupils(): HasManyThrough
-    {
-        return $this->hasManyThrough(Pupil::class, ClassRoom::class);
-    }
-
-
     public function authoredTasks(): HasMany
     {
         return $this->hasMany(Task::class, 'author_id');
@@ -32,5 +26,10 @@ class Teacher extends Model
     public function classRooms(): BelongsToMany
     {
         return $this->belongsToMany(ClassRoom::class);
+    }
+
+    public function subjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Subject::class);
     }
 }

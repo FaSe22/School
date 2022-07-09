@@ -1,0 +1,52 @@
+type Classroom{
+    id: ID!
+    grade: Int!
+    section: GradeSection!
+    pupils: [Pupil!]! @hasMany
+    teachers: [Teacher!]! @belongsToMany
+    subjects(name: String @where): [Subject!]! @belongsToMany
+}
+
+extend type Query {
+    classrooms: [Classroom!]! @paginate(defaultCount: 15)
+    classroom(id: ID! @eq): Classroom @find
+}
+
+type Mutation{
+    createClassroom(input: CreateClassroomInput @spread): Classroom @create
+    updateClassroom(input: UpdateClassroomInput  @spread ): Classroom @update
+}
+
+input CreateClassromBelongsTo {
+    create: CreateClassroomInput
+    connect: ID
+}
+
+
+input CreateClassroomBelongsToMany {
+    create: [CreateClassroomInput]
+    connect: [ID!]
+    sync: [ID!]
+}
+
+input UpdateClassroomInput {
+    grade: Int
+    section: GradeSection
+}
+
+input CreateClassroomInput {
+    grade: Int!
+    pupils: CreatePupilsHasMany
+    section: GradeSection!
+}
+
+
+
+enum GradeSection {
+    A
+    B
+    C
+    D
+    E
+    F
+}

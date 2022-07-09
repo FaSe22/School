@@ -1,0 +1,11 @@
+type Task{
+    id: ID!
+    title: String!
+    author: Teacher @belongsTo
+    subjects: [Subject!]! @belongsToMany
+    pivot: PupilTaskPivot
+}
+
+type PupilTaskPivot {
+    solved: Boolean
+}

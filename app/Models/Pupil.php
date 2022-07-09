@@ -18,10 +18,6 @@ class Pupil extends Model
         return $this->morphOne(User::class, 'usable');
     }
 
-    public function teachers(): HasManyThrough
-    {
-    return $this->hasManyThrough(Teacher::class,ClassRoom::class);
-    }
 
     public function eltern(): BelongsToMany
     {
@@ -35,6 +31,6 @@ class Pupil extends Model
 
     public function tasks(): BelongsToMany
     {
-        return $this->belongsToMany(Task::class);
+        return $this->belongsToMany(Task::class)->withPivot('solved');
     }
 }

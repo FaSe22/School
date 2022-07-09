@@ -1,0 +1,26 @@
+type Teacher{
+    id: ID!
+    first_name: String!
+    last_name: String!
+    user: User! @morphOne
+    class_rooms(class_room_id: Int @eq grade: Int @where): [Classroom]! @belongsToMany(relation: "classRooms")
+    subjects: [Subject!]! @belongsToMany
+}
+
+extend type Query {
+    teachers: [Teacher!]! @paginate(defaultCount: 12)
+    teacher(id: ID! @eq): Teacher @find
+}
+
+extend type Mutation {
+    createTeacher(input: CreateTeacherInput @spread): Teacher @create
+}
+
+input CreateTeacherInput {
+    first_name: String!
+    last_name: String!
+    user: CreateUserMorphOne
+    class_rooms: CreateClassroomBelongsToMany @rename(attribute: "classRooms")
+}
+
+

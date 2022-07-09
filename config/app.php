@@ -195,6 +195,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        //WherehasConditions Lighthouse
+        \Nuwave\Lighthouse\WhereConditions\WhereConditionsServiceProvider::class,
     ],
 
     /*

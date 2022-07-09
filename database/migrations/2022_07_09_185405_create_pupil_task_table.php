@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\ClassRoom;
+use App\Models\Pupil;
+use App\Models\Task;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +15,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pupils', function (Blueprint $table) {
+        Schema::create('pupil_task', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->foreignIdFor(ClassRoom::class)->constrained();
+            $table->foreignIdFor(Task::class)->constrained();
+            $table->foreignIdFor(Pupil::class)->constrained();
+            $table->boolean('solved');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pupils');
+        Schema::dropIfExists('pupil_task');
     }
 };
